@@ -12,6 +12,8 @@ class RNNNumpy:
         self.hidden_dim = hidden_dim
         self.bptt_truncate = bptt_truncate
         # Randomly initialize the network parameters
+        # s_t = T.tanh(U[:,x_t] + W.dot(s_t1_prev))
+
         self.U = np.random.uniform(-np.sqrt(1. / word_dim), np.sqrt(1. / word_dim), (hidden_dim, word_dim))
         self.V = np.random.uniform(-np.sqrt(1. / hidden_dim), np.sqrt(1. / hidden_dim), (word_dim, hidden_dim))
         self.W = np.random.uniform(-np.sqrt(1. / hidden_dim), np.sqrt(1. / hidden_dim), (hidden_dim, hidden_dim))

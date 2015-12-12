@@ -6,19 +6,22 @@ import operator
 
 class RNNTheano:
     
-    def __init__(self, word_dim, hidden_dim=100, bptt_truncate=4):
+    def __init__(self, word_dim, hidden_dim, bptt_truncate):
         # Assign instance variables
         self.word_dim = word_dim
         self.hidden_dim = hidden_dim
         self.bptt_truncate = bptt_truncate
+
         # Randomly initialize the network parameters
         U = np.random.uniform(-np.sqrt(1./word_dim), np.sqrt(1./word_dim), (hidden_dim, word_dim))
         V = np.random.uniform(-np.sqrt(1./hidden_dim), np.sqrt(1./hidden_dim), (word_dim, hidden_dim))
         W = np.random.uniform(-np.sqrt(1./hidden_dim), np.sqrt(1./hidden_dim), (hidden_dim, hidden_dim))
+
         # Theano: Created shared variables
         self.U = theano.shared(name='U', value=U.astype(theano.config.floatX))
         self.V = theano.shared(name='V', value=V.astype(theano.config.floatX))
         self.W = theano.shared(name='W', value=W.astype(theano.config.floatX))      
+
         # We store the Theano graph here
         self.theano = {}
         self.__theano_build__()

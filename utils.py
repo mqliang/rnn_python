@@ -18,4 +18,5 @@ def load_model_parameters_theano(path, model):
     model.V.set_value(V)
     model.W.set_value(W)
     print "Loaded model parameters from %s. hidden_dim=%d word_dim=%d" % (path, U.shape[0], U.shape[1])
-    
+
+
